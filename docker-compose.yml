@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  evennia:
+    build: .
+    ports:
+      - "4000-4002:4000-4002"
+    links:
+      - postgres
+  test:
+    build: .
+    command: bash test.sh
+    links:
+      - postgres
+  postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - /var/lib/postgresql/data
