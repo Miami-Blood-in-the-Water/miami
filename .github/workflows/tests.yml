@@ -29,6 +29,7 @@ jobs:
       - name: Run tests
         run: |
           bash test.sh
+          ls
       - name: Upload Coverage to Coveralls
         uses: coverallsapp/github-action@master
         with:
