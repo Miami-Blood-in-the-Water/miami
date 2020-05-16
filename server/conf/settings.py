@@ -25,15 +25,37 @@ put secret game- or server-specific settings in secret_settings.py.
 """
 
 # Use the defaults from Evennia unless explicitly overridden
+import json
+
+import boto3
 from evennia.settings_default import *
 
 ######################################################################
 # Evennia base server config
 ######################################################################
 
+INSTALLED_APPS = INSTALLED_APPS + [
+    "character"
+]
+
 # This is the name of your game. Make it catchy!
 SERVERNAME = "miami"
 
+try:
+    client = boto3.client('secretsmanager')
+    secret = client.get_secret_value(SecretId='prod/postgres/miami')
+    database = json.loads(secret['SecretString'])
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': database['dbname'],
+            'USER': database['username'],
+            'PASSWORD': database['password'],
+            'HOST': database['host'],
+            'PORT': database['port']
+        }}
+except Exception:
+    pass
 
 ######################################################################
 # Settings given in secret_settings.py override those in this file.
