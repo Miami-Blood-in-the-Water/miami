@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 
-evennia makemigrations
 evennia migrate
-evennia test --settings=settings .
+coverage run --source=. --omit=*/migrations/*,server/*,*/apps.py,*/tests/*.py,*/tests.py $(which evennia) test --settings=settings .
