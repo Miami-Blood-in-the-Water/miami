@@ -1,12 +1,30 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags %}
+{% load characters %}
 {% block content %}
-<h2>Characters</h2>
-<div class="row">
-    {% for character in page.characters %}
-    <div class="col">
-        {{ character.character.name }}
-    </div>
+<h1>Characters</h1>
+<div id="alerts">
+    {% for character in user|my_characters %}
+        {% if not character|character_page %}
+            <div class="alert alert-primary">
+                Your character, {{ character.name }}, does not have a character page.
+                <a href="#">Create a page.</a>
+            </div>
+        {% endif %}
     {% endfor %}
+</div>
+<div class="row row-cols-md-4 row-cols-2">
+    {% include "./character_list.html" with type="mortal" %}
+    {% include "./character_list.html" with type="vampire" %}
+    {% include "./character_list.html" with type="werewolf" %}
+    {% include "./character_list.html" with type="mage" %}
+    {% include "./character_list.html" with type="changeling" %}
+    {% include "./character_list.html" with type="promethean" %}
+    {% include "./character_list.html" with type="hunter" %}
+    {% include "./character_list.html" with type="geist" %}
+    {% include "./character_list.html" with type="mummy" %}
+    {% include "./character_list.html" with type="demon" %}
+    {% include "./character_list.html" with type="beast" %}
+    {% include "./character_list.html" with type="deviant" %}
 </div>
 {% endblock %}

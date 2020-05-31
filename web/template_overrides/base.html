@@ -1,0 +1,96 @@
+{% load wagtailuserbar %}
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <title>{{ page.title }}</title>
+
+    {# Load the tag library #}
+    {% load bootstrap4 %}
+
+    {# Load CSS and JavaScript #}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+</head>
+
+<body>
+{% wagtailuserbar %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Miami: Blood in the Water</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/help">Helpfiles</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/territory">The Grid</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/webclient">Webclient</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/helpdesk">Helpdesk</a>
+            </li>
+            {% if user.is_staff %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin">Wagtail Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/django-admin">Django Admin</a>
+                </li>
+            {% endif %}
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                        {{ user.username }}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="/messages">Messages <span
+                                class="badge badge-primary">5</span></a>
+                        <div class="dropdown-divider"></div>
+                        <h6 class="dropdown-header">My Characters</h6>
+                        {% for character in user.characters %}
+                            {% if character.sheet %}
+                                <a class="dropdown-item"
+                                   href="{% url 'chargen0' character.sheet.character_id %}">{{ character.name }}</a>
+                            {% else %}
+                                {#  <a class="dropdown-item" href="{% url 'chargen0Create' %}">{{character.name}}</a> #}
+                            {% endif %}
+                        {% endfor %}
+                        <div class="dropdown-divider"></div>
+                        <a href="{% url 'logout' %}?next={{ request.path | urlencode }}">Logout</a>
+
+                    </div>
+                </li>
+            {% else %}
+                <a class="dropdown-item" href="{% url 'login' %}">Log In</a>
+            {% endif %}
+
+        </ul>
+    </div>
+</nav>
+{% bootstrap_messages %}
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
+
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+</body>
+
+</html>

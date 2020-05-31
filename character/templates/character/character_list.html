@@ -1,0 +1,13 @@
+{% load characters %}
+{% with characters=type|by_type %}
+{% if characters|length %}
+<div class="col">
+    <h2>{{type|title}}</h2>
+    {% for character in characters %}
+        <div class="row">
+            <div class="col">{{ character }}</div>
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% endwith %}

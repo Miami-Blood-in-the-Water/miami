@@ -1,1 +1,3 @@
 from character.models.character import Character
+from character.models.character_index_page import CharacterIndexPage
+from character.models.character_page import CharacterPage

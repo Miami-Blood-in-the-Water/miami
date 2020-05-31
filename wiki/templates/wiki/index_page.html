@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+{% block content %}
+    <div class="row">
+        <div class="col-sm">
+           {% for block in page.body %}
+                {% if block.block_type == 'heading' %}
+                    <h3>{{ block.value }}</h3>
+                {% else %}
+                    {% include_block block %}
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="col-sm">
+            <h3>Sphere Information</h3>
+                <div class="row">
+                    <div class="col-lg" data-toggle="tooltip" title="12 active, 7 connected">
+                        Mortal <span class="badge badge-success float-right">Open</span>
+                    </div>
+                    <div class="col-lg">
+                        Vampire <span class="badge badge-success float-right">Open</span>
+                    </div>
+                    <div class="col-lg">
+                        Werewolf <span class="badge badge-success float-right">Open</span>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-lg">
+                        Mage <span class="badge badge-success float-right">Open</span>
+                    </div>
+                    <div class="col-lg">
+                        Changeling <span class="badge badge-success float-right">Open</span>
+                    </div>
+                    <div class="col-lg">
+                        Promethean <span class="badge badge-danger float-right">Closed</span>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-lg">
+                        Hunter <span class="badge badge-danger float-right">Closed</span>
+                    </div>
+                    <div class="col-lg">
+                        Geist <span class="badge badge-danger float-right">Closed</span>
+                    </div>
+                    <div class="col-lg">
+                        Mummy <span class="badge badge-danger float-right">Closed</span>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-lg">
+                        Demon <span class="badge badge-danger float-right">Closed</span>
+                    </div>
+                    <div class="col-lg">
+                        Beast <span class="badge badge-danger float-right">Closed</span>
+                    </div>
+                    <div class="col-lg">
+                        Deviant <span class="badge badge-danger float-right">Closed</span>
+                    </div>
+                </div>
+        </div>
+    </div>
+{% endblock %}
