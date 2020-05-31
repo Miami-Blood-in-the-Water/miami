@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+{% block content %}
+<h2>Characters</h2>
+<div class="row">
+    {% for character in page.characters %}
+    <div class="col">
+        {{ character.character.name }}
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
