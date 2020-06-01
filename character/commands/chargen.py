@@ -18,7 +18,9 @@ class CmdRace(Command):
             character.save()
             self.msg(f'You are now a {args}.')
         except KeyError:
-            self.msg(f"No such race, {args}.")
+            self.msg("Valid races are:")
+            for race in self.races.values():
+                self.msg(race)
 
 
 class CmdChargen(Command):
