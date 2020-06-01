@@ -1,6 +1,6 @@
 from evennia import Command, EvMenu
 
-from typeclasses.characters import Character
+from character.models import Character
 
 
 class CmdRace(Command):
@@ -17,7 +17,7 @@ class CmdRace(Command):
             character = race(character=self.caller)
             character.save()
             self.msg(f'You are now a {args}.')
-        except ValueError:
+        except KeyError:
             self.msg(f"No such race, {args}.")
 
 
