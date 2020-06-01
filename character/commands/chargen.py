@@ -19,7 +19,7 @@ class CmdRace(Command):
             self.msg(f'You are now a {args}.')
         except KeyError:
             self.msg("Valid races are:")
-            for race in self.races.values():
+            for race in self.races.keys():
                 self.msg(race)
 
 
