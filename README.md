@@ -1,3 +1,5 @@
+![Tests](https://github.com/Miami-Blood-in-the-Water/miami-new/workflows/Tests/badge.svg) [![Coverage Status](https://coveralls.io/repos/github/Miami-Blood-in-the-Water/miami-new/badge.svg?branch=master)](https://coveralls.io/github/Miami-Blood-in-the-Water/miami-new?branch=master)
+
 # Welcome to Evennia!
 
 This is your game directory, set up to let you start with

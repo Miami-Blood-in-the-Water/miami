@@ -41,7 +41,6 @@ INSTALLED_APPS = INSTALLED_APPS + [
 # This is the name of your game. Make it catchy!
 SERVERNAME = "miami"
 
-"""
 try:
     client = boto3.client('secretsmanager')
     secret = client.get_secret_value(SecretId='prod/postgres/miami')
@@ -57,7 +56,6 @@ try:
         }}
 except Exception:
     pass
-"""
 
 ######################################################################
 # Settings given in secret_settings.py override those in this file.
