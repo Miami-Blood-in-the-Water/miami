@@ -80,7 +80,7 @@ workflows:
             - notify-pre-deploy
           family: miami
           cluster-name: miami
-          container-image-name-updates: 'container=miami,tag=${CIRCLE_SHA1}'
+          container-image-name-updates: 'container=miami,tag=${CIRCLE_SHA1},container=migrate,tag=${CIRCLE_SHA1}'
       - notify-post-deploy:
           requires:
             - aws-ecs/deploy-service-update
