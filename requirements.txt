@@ -3,6 +3,7 @@ boto3==1.12.36
 psycopg2-binary==2.8.5
 django-model-utils==4.0.0
 django-bootstrap4==1.1.1
+Faker
 wagtail
 coverage
 coveralls
