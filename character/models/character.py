@@ -8,9 +8,9 @@ class Character(Model):
     objects = InheritanceManager()
 
     character = OneToOneField(ObjectDB, on_delete=CASCADE, primary_key=True)
-    account = ForeignKey(AccountDB, on_delete=CASCADE)
+    account = ForeignKey(AccountDB, on_delete=CASCADE, null=True)
 
-    type = CharField(max_length=16, blank=True, editable=False)
+    type = CharField(max_length=16, null=True, blank=True, editable=False)
 
     @property
     def name(self):
