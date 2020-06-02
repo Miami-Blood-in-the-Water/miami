@@ -5,4 +5,4 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD ["bash", "start.sh"]
+CMD ["evennia start -l"]
