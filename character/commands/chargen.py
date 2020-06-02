@@ -14,7 +14,7 @@ class CmdRace(Command):
         args = self.args.strip()
         try:
             race = self.races[args]
-            character = race(character=self.caller)
+            character = race(character=self.caller, account=self.caller.account)
             character.save()
             self.msg(f'You are now a {args}.')
         except KeyError:
