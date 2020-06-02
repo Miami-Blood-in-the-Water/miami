@@ -78,7 +78,6 @@ WAGTAIL_SITE_NAME = SERVERNAME
 # This is the name of your game. Make it catchy!
 SERVERNAME = "miami"
 
-"""
 try:
     client = boto3.client('secretsmanager')
     secret = client.get_secret_value(SecretId='prod/postgres/miami')
@@ -94,7 +93,6 @@ try:
         }}
 except Exception:
     pass
-"""
 
 BOOTSTRAP4 = {
 
