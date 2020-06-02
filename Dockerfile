@@ -5,4 +5,5 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD ["evennia start -l"]
+ENTRYPOINT ["evennia"]
+CMD ["start -l"]
